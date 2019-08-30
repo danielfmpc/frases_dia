@@ -8,15 +8,26 @@ void main() {
 			title: "Fases do dia",
 			// home: Container(color: Colors.white),
 			home: Container(
-				color: Colors.white,
+				// color: Colors.white,
+				margin: EdgeInsets.all(0), // Espaçamento externo
+				padding: EdgeInsets.fromLTRB(0, 0, 0, 0), // Espaçamento interno
+				decoration: BoxDecoration(
+					border: Border.all(width: 1, color: Colors.white),
+
+				),
 				child: Column(
 					children: <Widget>[
+						// Padding(
+						// 	padding: EdgeInsets.all(30), // Definindo diretamente o padding ao texto
+						// 	child: Text("t2"),
+						// ), 
 						FlatButton(
 							onPressed: (){
 								print("Pressionado");
 							},
 							child:Text(
 								"Clique aqui",
+								textAlign: TextAlign.justify,
 								style: TextStyle(
 									fontSize: 35,
 									color: Colors.black,
