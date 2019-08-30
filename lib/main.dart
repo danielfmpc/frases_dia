@@ -6,7 +6,15 @@ void main() {
 	runApp(
 		MaterialApp(
 			title: "Fases do dia",
-			home: Container(color: Colors.white),
-		)
+			// home: Container(color: Colors.white),
+			home: Container(
+				color: Colors.white,
+				child: Column(
+					children: <Widget>[
+						
+					],
+				),
+			),
+		),
 	);
 }
