@@ -16,6 +16,8 @@ void main() {
 
 				),
 				child: Column(
+					mainAxisAlignment: MainAxisAlignment.start, // serve para definir a posição na tela
+					crossAxisAlignment: CrossAxisAlignment.start, // serve para definir a posição na tela cruzando o eixo principal
 					children: <Widget>[
 						// Padding(
 						// 	padding: EdgeInsets.all(30), // Definindo diretamente o padding ao texto
