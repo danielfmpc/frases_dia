@@ -5,28 +5,7 @@ void main() {
   	runApp(
 		MaterialApp(
 		title: "Fases do dia",
-		home: Scaffold(
-			appBar: AppBar(
-				title: Text("instagram"),
-				backgroundColor: Colors.black,
-			),
-			body: Padding(
-				padding: EdgeInsets.all(16),
-				child: Text("Conteudo main"),
-			),
-			bottomNavigationBar: BottomAppBar(
-				color: Colors.black,
-				child: Padding(
-					padding: EdgeInsets.all(16),
-					child: Row(
-						children: <Widget>[
-							Text("Texto 1"),
-							Text("Texto 2"),
-						],
-					),
-				),
-			),
-		),
+		home: HomeStateful(),
 		// home: Container(color: Colors.white),
 		// 		home: Container(
 		// 			// color: Colors.white,
@@ -72,4 +51,79 @@ void main() {
 		//   ),
 		),
   	);
+}
+
+// Stateless não pode ser alterado
+// Stateful pode ser alterado
+
+class HomeStateful extends StatefulWidget {
+  @override
+  _HomeStatefulState createState() => _HomeStatefulState();
+}
+
+class _HomeStatefulState extends State<HomeStateful> {
+	var _texto = "Daniel Fernando";
+  	@override
+  	Widget build(BuildContext context) {
+		return Scaffold(
+			appBar: AppBar(
+				title: Text("instagram"),
+				backgroundColor: Colors.black,
+			),
+			body: Container(
+				child: Column(
+					children: <Widget>[
+						RaisedButton(
+							onPressed: (){
+								setState((){
+									_texto = "oi";
+								});
+							},							
+						),
+						Text("Nome: $_texto"),
+					],
+				),
+			),
+			bottomNavigationBar: BottomAppBar(
+				color: Colors.black,
+				child: Padding(
+					padding: EdgeInsets.all(16),
+					child: Row(
+						children: <Widget>[
+							Text("Texto 1"),
+							Text("Texto 2"),
+						],
+					),
+				),
+			),
+		);
+	}
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+	return Scaffold(
+		appBar: AppBar(
+			title: Text("instagram"),
+			backgroundColor: Colors.black,
+		),
+		body: Padding(
+			padding: EdgeInsets.all(16),
+			child: Text("Conteudo main"),
+		),
+		bottomNavigationBar: BottomAppBar(
+			color: Colors.black,
+			child: Padding(
+				padding: EdgeInsets.all(16),
+				child: Row(
+					children: <Widget>[
+						Text("Texto 1"),
+						Text("Texto 2"),
+					],
+				),
+			),
+		),
+	);
+  }
 }
