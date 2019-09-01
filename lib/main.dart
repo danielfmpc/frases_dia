@@ -23,6 +23,10 @@ void main() {
 						// 	padding: EdgeInsets.all(30), // Definindo diretamente o padding ao texto
 						// 	child: Text("t2"),
 						// ), 
+						/*child: Image.asset(
+							"images/mesa.jpg",
+							fit: BoxFit.contain, //define como vai mostrar a imagem
+						),*/
 						FlatButton(
 							onPressed: (){
 								print("Pressionado");
@@ -45,7 +49,7 @@ void main() {
 						),
 					],
 				),
-			),
+      ),
 		),
 	);
 }
