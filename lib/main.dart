@@ -1,128 +1,83 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
-  	runApp(
+	runApp(
 		MaterialApp(
-		title: "Fases do dia",
-		home: HomeStateful(),
-		// home: Container(color: Colors.white),
-		// 		home: Container(
-		// 			// color: Colors.white,
-		// 			margin: EdgeInsets.all(0), // Espaçamento externo
-		// 			padding: EdgeInsets.fromLTRB(0, 0, 0, 0), // Espaçamento interno
-		// 			decoration: BoxDecoration(
-		// 				border: Border.all(width: 1, color: Colors.white),
-		// 			),
-		// 			child: Column(
-		// 				mainAxisAlignment: MainAxisAlignment.start, // serve para definir a posição na tela
-		// 				crossAxisAlignment: CrossAxisAlignment.start, // serve para definir a posição na tela cruzando o eixo principal
-		// 				children: <Widget>[
-		// 					// Padding(
-		// 					// 	padding: EdgeInsets.all(30), // Definindo diretamente o padding ao texto
-		// 					// 	child: Text("t2"),
-		// 					// ),
-		// 					/*child: Image.asset(
-		// 						"images/mesa.jpg",
-		// 						fit: BoxFit.contain, //define como vai mostrar a imagem
-		// 					),*/
-		// 					FlatButton(
-		// 						onPressed: (){
-		// 							print("Pressionado");
-		// 						},
-		// 						child:Text(
-		// 							"Clique aqui",
-		// 							textAlign: TextAlign.justify,
-		// 							style: TextStyle(
-		// 								fontSize: 35,
-		// 								color: Colors.black,
-		// 								fontStyle: FontStyle.normal,
-		// 								fontWeight: FontWeight.bold,
-		// 								wordSpacing: 0, // Serve para ajustar o espaço entre as palavras
-		// 								decoration: TextDecoration.none, // serve para tirar o sublinhado
-		// 								decorationColor: Colors.black, // Serve para dar cor ao sublinhado
-		// 								decorationStyle: TextDecorationStyle.solid, // Serve para definir a quantidade de linha do sublinhado
-		// 								letterSpacing: 0 // A quantidade de espaço a ser adicionado entre cada letra. Um valor negativo pode ser usado para aproximar as letras.
-		// 							),
-		// 						),
-		// 					),
-		// 				],
-		// 			),
-		//   ),
-		),
-  	);
+			home: Home(),
+		)
+	);
 }
 
-// Stateless não pode ser alterado
-// Stateful pode ser alterado
-
-class HomeStateful extends StatefulWidget {
-  @override
-  _HomeStatefulState createState() => _HomeStatefulState();
+class Home extends StatefulWidget {
+	@override
+	_HomeState createState() => _HomeState();
 }
 
-class _HomeStatefulState extends State<HomeStateful> {
-	var _texto = "Daniel Fernando";
-  	@override
-  	Widget build(BuildContext context) {
+class _HomeState extends State<Home> {
+	var _frases = [
+		"Levanta, sacode a poeira, dá a volta por cima.",
+		"Nem todos os dias são bons, mas há algo bom em cada dia.",
+		"Suba o primeiro degrau com fé. Não é necessário que você veja toda a escada, apenas dê o primeiro passo.",
+		"Toda manhã você tem duas escolhas: continuar dormindo com seus sonhos ou acordar e persegui-los!",
+		"A cada novo dia, a cada momento, temos a nossa disposição a maravilhosa possibilidade do encontro, que traz em si infinitas oportunidades. Precisamos apenas estar atentos.",
+		"O otimismo é a fé em ação. Nada se pode levar a efeito sem otimismo.",
+		"A sua irritação não solucionará problema algum. O seu mau humor não modifica a vida. Não estrague o seu dia.",
+		"Vamos inventar o amanhã no lugar de se preocupar com o que aconteceu ontem.",
+		"As pessoas mais felizes não têm as melhores coisas. Elas sabem fazer o melhor das oportunidades que aparecem em seus caminhos.",
+		"Ninguém, além de você, está no controle de sua felicidade. Portanto, ajuste as velas e corrija e rumo.",
+	];
+	var _fraseGerada = "Clique abaixo para gerar uma frase";
+
+	void _gerarFrases(){
+		var numeroSorteado = Random().nextInt(_frases.length);
+		
+		setState(() {
+			_fraseGerada = _frases[numeroSorteado];
+		});
+	}
+
+	@override
+	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
-				title: Text("instagram"),
-				backgroundColor: Colors.black,
+				title: Text("Frase do dia"),
+				backgroundColor: Colors.green,
 			),
-			body: Container(
+			body: Center(
+				child: Container(
+				//width: double.infinity, // completa de acordo com a tela
+				padding: EdgeInsets.all(16),
 				child: Column(
+					mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+					crossAxisAlignment: CrossAxisAlignment.center,
 					children: <Widget>[
-						RaisedButton(
-							onPressed: (){
-								setState((){
-									_texto = "oi";
-								});
-							},							
+						Image.asset("images/logo.png"),
+						Text(
+							_fraseGerada,
+							textAlign: TextAlign.justify,
+							style: TextStyle(
+								fontSize: 17,
+								color: Colors.black,
+								fontStyle: FontStyle.italic,
+							),							
 						),
-						Text("Nome: $_texto"),
+						RaisedButton(
+							child: Text(
+								"Nova frase",
+								style: TextStyle(
+									fontSize: 25,
+									fontWeight: FontWeight.bold,
+									color: Colors.white,
+								),
+							),
+							onPressed: _gerarFrases,
+							color: Colors.green,
+						)
 					],
 				),
 			),
-			bottomNavigationBar: BottomAppBar(
-				color: Colors.black,
-				child: Padding(
-					padding: EdgeInsets.all(16),
-					child: Row(
-						children: <Widget>[
-							Text("Texto 1"),
-							Text("Texto 2"),
-						],
-					),
-				),
 			),
 		);
 	}
-}
-
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-	return Scaffold(
-		appBar: AppBar(
-			title: Text("instagram"),
-			backgroundColor: Colors.black,
-		),
-		body: Padding(
-			padding: EdgeInsets.all(16),
-			child: Text("Conteudo main"),
-		),
-		bottomNavigationBar: BottomAppBar(
-			color: Colors.black,
-			child: Padding(
-				padding: EdgeInsets.all(16),
-				child: Row(
-					children: <Widget>[
-						Text("Texto 1"),
-						Text("Texto 2"),
-					],
-				),
-			),
-		),
-	);
-  }
 }
